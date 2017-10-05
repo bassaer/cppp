@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include "Car.hpp"
 
 using namespace std;
 
@@ -15,7 +16,15 @@ int main(int argc, const char * argv[]) {
     cout << "name? \n";
     cout << "> ";
     cin >> name;
-    cout << "Hello " << name << "\n";
+    
+    
+    Car car1(name);
+    Car car2(name, 100);
+    
+    car1.drive();
+    car2.drive();
+    car1.stop();
+    car2.stop();
     
     return 0;
 }

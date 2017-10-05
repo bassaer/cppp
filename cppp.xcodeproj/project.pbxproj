@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A70E2D761F8669B2007AB00D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A70E2D751F8669B2007AB00D /* main.cpp */; };
+		A70E2D821F8690D4007AB00D /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A70E2D801F8690D4007AB00D /* Car.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,8 @@
 		A70E2D721F8669B2007AB00D /* cppp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppp; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70E2D751F8669B2007AB00D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A70E2D7C1F866A56007AB00D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A70E2D801F8690D4007AB00D /* Car.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Car.cpp; sourceTree = "<group>"; };
+		A70E2D811F8690D4007AB00D /* Car.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Car.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				A70E2D751F8669B2007AB00D /* main.cpp */,
+				A70E2D801F8690D4007AB00D /* Car.cpp */,
+				A70E2D811F8690D4007AB00D /* Car.hpp */,
 			);
 			path = cppp;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A70E2D821F8690D4007AB00D /* Car.cpp in Sources */,
 				A70E2D761F8669B2007AB00D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

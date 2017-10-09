@@ -10,14 +10,15 @@
 #define Car_hpp
 
 #include <stdio.h>
+#include <string>
 
 class Car
 {
-    char name[40];
+    std::string name;
     int speed;
 public:
-    Car(char *input);
-    Car(char *input, int spd);
+    Car(std::string input);
+    Car(std::string input, int spd);
     void drive();
     void stop();
     int getSpeed() { return speed;}

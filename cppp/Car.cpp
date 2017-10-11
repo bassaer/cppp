@@ -11,17 +11,12 @@
 
 using namespace std;
 
-Car::Car(char *input)
+Car::Car(std::string input):name(input)
 {
-    speed = 0;
-    strcpy(name, input);
+    this->speed = 0;
 }
 
-Car::Car(char *input, int spd)
-{
-    speed = spd;
-    strcpy(name, input);
-}
+Car::Car(std::string input, int spd): speed(spd), name(input){}
 
 void Car::drive()
 {

@@ -14,14 +14,14 @@ class Date {
   static int days_of_month(int year, int month);
   
 public:
-  static bool get_leap_year(int year) {
+  static bool is_leap_year(int year) {
     return year % 4 == 0 && year % != 0 || year % 400 == 0;
   }
 
   Date();
   Date(int year, int month = 1, day = 1);
   
-  bool get_leap_year() const { return get_loep_year(this->year); }
+  bool is_leap_year() const { return get_loep_year(this->year); }
   
   int get_year() const { return this->year; }
   int get_month() const { return this->month; }
@@ -35,8 +35,8 @@ public:
   Date get_preceding_day() const;
   Date get_following_day() const;
   
-  int get_day_of_year() const;
-  int get_day_of_week() const;
+  int get_days_of_year() const;
+  int get_days_of_week() const;
   
   operator long() const;
   

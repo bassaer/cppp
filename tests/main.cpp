@@ -4,9 +4,8 @@
 #include <cppunit/TestRunner.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/CompilerOutputter.h>
-#include <cppunit/extensions/HelperMacros.h>
 
-unsing namespace CPPUNIT_NS;
+using namespace CPPUNIT_NS;
 
 int main(int argc, char **argv) {
   TestResult controller;

@@ -1,18 +1,17 @@
 COMPILER  = g++
 CFLAGS    = -g -MMD -MP -Wall -Wextra -Winit-self -Wno-missing-field-initializers
-ifeq "$(shell getconf LONG_BIT)" "64"
-	LDFLAGS = 
-else
-	LDFGAGS =
-endif
+LDFGAGS   = -L/usr/lib64 -lcppunit -lCppUTestExt
 LIBS      =
 INCLUDE   = -I./include
 TARGET    = ./bin/$(shell basename `readlink -f .`)
+TEST      = ./bin/test
 SRCDIR    = ./src
+TESTDIR   = ./tests
 ifeq "$(strip $(SRCDIR))" ""
 	SRCDIR  = .
 endif
 SOURCES   = $(wildcard $(SRCDIR)/*.cpp)
+TESTS     = $(wildcard $(TESTDIR)/*.cpp)
 OBJDIR    = ./obj
 ifeq "$(strip $(OBJDIR))" ""
 	OBJDIR  = .
@@ -28,6 +27,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(COMPILER) $(CFLAGS) $(INCLUDE) -o $@ -c $<
 
 all: clean $(TARGET) run
+
+test: $(TESTDIR)
+	$(COMPILER) $(TESTS) $(LDFLAGS) -o $(TEST)
 
 clean:
 	-rm -f $(OBJECTS) $(DEPENDS) $(TARGET)

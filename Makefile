@@ -1,6 +1,6 @@
 COMPILER  = g++
 CFLAGS    = -g -MMD -MP -Wall -Wextra -Winit-self -Wno-missing-field-initializers
-LDFGAGS   = -L/usr/lib64 -lcppunit -lCppUTestExt
+LDFLAGS   = -lcppunit 
 LIBS      =
 INCLUDE   = -I./include
 TARGET    = ./bin/$(shell basename `readlink -f .`)
@@ -26,15 +26,18 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	-mkdir -p $(OBJDIR)
 	$(COMPILER) $(CFLAGS) $(INCLUDE) -o $@ -c $<
 
-all: clean $(TARGET) run
+all: clean $(TEST) $(TARGET) test run
 
-test: $(TESTDIR)
-	$(COMPILER) $(TESTS) $(LDFLAGS) -o $(TEST)
+$(TEST): $(TESTDIR)
+	$(COMPILER) $(TESTS) $(LDFLAGS) -o $@ 
 
 clean:
-	-rm -f $(OBJECTS) $(DEPENDS) $(TARGET)
+	-rm -f $(OBJECTS) $(DEPENDS) $(TARGET) $(TEST)
 
 run:  
 	$(TARGET)
+
+test:
+	$(TEST)
 
 -include $(DEPENDS)

@@ -1,20 +1,20 @@
 #include <ctime>
 #include <sstream>
-#include <iostrem>
+#include <iostream>
 #include "Date.hpp"
 
 using namespace std;
 
 int Date::dmax[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-int Date::days_of_year(int year)
+int Date::get_days_of_year(int year)
 {
-  return 365 + get_leap_year(year);
+  return 365 + is_leap_year(year);
 }
 
 int Date::get_days_of_month(int year, int month)
 {
-  return dmax[month - 1] + (month == 2 && get_leap_year(year));
+  return dmax[month - 1] + (month == 2 && is_leap_year(year));
 }
 
 Date::Date()
@@ -44,7 +44,7 @@ Date Date::get_preceding_day() const
   return --date;
 }
 
-Date Date::get_following_day() cost
+Date Date::get_following_day() const
 {
   Date date(*this);
   return ++date;
@@ -68,7 +68,7 @@ int Date::get_days_of_week() const
     year--;
     month += 12;
   }
-  return (year + year / 4 - year / 100 + year / 400 (13 * month + 8) /5 + this->day) % 7;
+  return (year + year / 4 - year / 100 + year / 400 + (13 * month + 8) /5 + this->day) % 7;
 }
 
 Date::operator long() const
@@ -96,6 +96,18 @@ Date Date::operator++(int)
   return date;
 }
 
+Date& Date::operator--()
+{
+  if (this->day > 1) {
+    this->day--;
+    return *this;
+  } else if(--this->month <= 1) {
+     this->year--;
+     this->month = 12;
+  }
+  this->day = get_days_of_month(this->year, this->month);
+  return *this;
+}
 Date Date::operator--(int)
 {
   Date date(*this);
@@ -108,9 +120,9 @@ Date& Date::operator+=(int dn)
   if (dn < 0) {
     return *this -= dn;
   }
-  d += dn;
+  this->day += dn;
   while (this->day > get_days_of_month(this->year, this->month)) {
-    this->day -= get_days_of_month(this->year, this->month));
+    this->day -= get_days_of_month(this->year, this->month);
     if (++this->month > 12) {
       this->year++;
       this->month = 1;
@@ -143,7 +155,7 @@ Date Date::operator+(int dn) const
 
 Date operator+(int dn, const Date& day)
 {
-  return day += dn;
+  return day + dn;
 }
 
 Date Date::operator-(int dn) const
@@ -159,14 +171,14 @@ long Date::operator-(const Date& day) const
   long comparer_day = day.get_days_of_year();
 
   if (this->year > day.get_year()) {
-    diff = compared_day - conparer_day;
+    diff = compared_day - comparer_day;
   } else if (this->year > day.get_year()) {
     diff = get_days_of_year(day.get_year()) - comparer_day + compared_day;
-    for (int y = day.get_year() + 1; y < this->year(); y++) {
+    for (int y = day.get_year() + 1; y < this->year; y++) {
       diff += get_days_of_year(y);
     }
   } else {
-    diff = -(get_days_year(this->year) - compared_day - comparer_day);
+    diff = -(get_days_of_year(this->year) - compared_day - comparer_day);
     for (int y = this->year + 1; y < day.get_year(); y++) {
       diff -= get_days_of_year(y);
     }
@@ -217,8 +229,8 @@ bool Date::operator<=(const Date& day) const
 string Date::to_string() const
 {
   ostringstream out;
-  out << this->month << "/" << this->day << "/" << this->year();
-  return out;
+  out << this->month << "/" << this->day << "/" << this->year;
+  return out.str();
 }
 
 ostream& operator<<(ostream& out, const Date& date)

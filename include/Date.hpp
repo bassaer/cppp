@@ -10,18 +10,18 @@ class Date {
   int day;
 
   static int dmax[];
-  static int days_of_year(int year);
-  static int days_of_month(int year, int month);
+  static int get_days_of_year(int year);
+  static int get_days_of_month(int year, int month);
   
 public:
   static bool is_leap_year(int year) {
-    return year % 4 == 0 && year % != 0 || year % 400 == 0;
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
   }
 
   Date();
-  Date(int year, int month = 1, day = 1);
+  Date(int year, int month = 1, int day = 1);
   
-  bool is_leap_year() const { return get_loep_year(this->year); }
+  bool is_leap_year() const { return is_leap_year(this->year); }
   
   int get_year() const { return this->year; }
   int get_month() const { return this->month; }
@@ -29,7 +29,7 @@ public:
 
   void set_year(int year) { this->year = year; }
   void set_month(int month) { this->month = month; }
-  void set_day(int day) { this->day = day }
+  void set_day(int day) { this->day = day; }
   void set(int year, int month, int day);
 
   Date get_preceding_day() const;
@@ -61,7 +61,7 @@ public:
   bool operator<=(const Date& day) const;
 
   std::string to_string() const;
-}
+};
 
 std::ostream& operator<<(std::ostream& stream, const Date& date);
 std::istream& operator>>(std::istream& stream, const Date& date);

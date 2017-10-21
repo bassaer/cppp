@@ -33,3 +33,9 @@
 
 #ctags
 tags
+
+#vim
+*.swp
+
+#bin
+/bin

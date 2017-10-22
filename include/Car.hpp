@@ -21,6 +21,9 @@ public:
     Car(std::string input, int spd);
     void drive();
     void stop();
+    /**
+     * @return value of speed
+     */
     int getSpeed() { return speed;}
 };
 #endif /* Car_hpp */

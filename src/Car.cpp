@@ -1,10 +1,10 @@
-//
-//  Car.cpp
-//  cppp
-//
-//  Created by 中山翼 on 2017/10/06.
-//  Copyright © 2017年 Tsubasa Nakayama. All rights reserved.
-//
+/**
+*  @file Car.cpp
+*  @brief practice for cpp
+*  @author 中山翼
+*  @date 2017/10/06.
+*  Copyright © 2017年 Tsubasa Nakayama. All rights reserved.
+*/
 
 #include "Car.hpp"
 #include <iostream>
@@ -18,6 +18,12 @@ Car::Car(std::string input):name(input)
 
 Car::Car(std::string input, int spd): speed(spd), name(input){}
 
+/**
+ * @fn
+ * drive func
+ * @brief print status of car
+ * @detail detail doc
+ */
 void Car::drive()
 {
 
